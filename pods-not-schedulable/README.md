@@ -2,8 +2,7 @@ In Kubernetes, the scheduler is responsible for assigning pods to nodes in the c
 
 1. Node Selector
 
-Node Selector is a simple way to constrain pods to nodes with specific labels. It allows you to specify a set of key-value pairs that must match the node's labels for a pod to be scheduled on that node.
-Usage: Include a nodeSelector field in the pod's YAML definition to specify the required labels.
+nodeSelector is the simplest recommended form of node selection constraint. You can add the nodeSelector field to your Pod specification and specify the node labels you want the target node to have. Kubernetes only schedules the Pod onto nodes that have each of the labels you specify.
 
 ```
 spec:
@@ -16,8 +15,11 @@ spec:
 
 2. Node Affinity
 
-Node Affinity is a more expressive way to specify rules about the placement of pods relative to nodes' labels. It allows you to specify rules that apply only if certain conditions are met.
-Usage: Define nodeAffinity rules in the pod's YAML definition, specifying required and preferred node selectors.
+Node affinity is conceptually similar to nodeSelector, allowing you to constrain which nodes your Pod can be scheduled on based on node labels. There are two types of node affinity:
+
+requiredDuringSchedulingIgnoredDuringExecution: The scheduler can't schedule the Pod unless the rule is met. This functions like nodeSelector, but with a more expressive syntax.
+
+preferredDuringSchedulingIgnoredDuringExecution: The scheduler tries to find a node that meets the rule. If a matching node is not available, the scheduler still schedules the Pod.
 
 ```
 spec:
