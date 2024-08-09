@@ -44,16 +44,16 @@ Usage: Use kubectl taint command to apply taints to nodes. Include tolerations f
 
 There are 3 types of Taints:
 
-** NoExecute
+## NoExecute
 This affects pods that are already running on the node as follows:
 Pods that do not tolerate the taint are evicted immediately
 Pods that tolerate the taint without specifying tolerationSeconds in their toleration specification remain bound forever
 Pods that tolerate the taint with a specified tolerationSeconds remain bound for the specified amount of time. After that time elapses, the node lifecycle controller evicts the Pods from the node.
 
-** NoSchedule
+## NoSchedule
 No new Pods will be scheduled on the tainted node unless they have a matching toleration. Pods currently running on the node are not evicted.
 
-** PreferNoSchedule
+## PreferNoSchedule
 PreferNoSchedule is a "preference" or "soft" version of NoSchedule. The control plane will try to avoid placing a Pod that does not tolerate the taint on the node, but it is not guaranteed.
 
 ```
