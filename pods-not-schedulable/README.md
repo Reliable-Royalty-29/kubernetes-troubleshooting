@@ -88,3 +88,5 @@ spec:
     value: ssd
     effect: NoSchedule
 ```
+
+Doc Link: [https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/]
