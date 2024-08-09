@@ -1,4 +1,8 @@
-### Kubectl Commands
+Certainly! Here’s the updated documentation including the command for tainting and removing taints from nodes:
+
+---
+
+### **Kubectl Commands**
 
 - **Label a node**: Adds a label to a specific node.
   ```bash
@@ -54,8 +58,6 @@
   ```
   *(Switches the current context to the cluster named `<cluster-name>`.)*
 
-Here's the formatted version of the content you provided:
-
 ---
 
 ### **Removing a Label from a Node in Kubernetes**
@@ -89,27 +91,44 @@ This command will show the current labels on the node, confirming that the speci
 
 ---
 
-### **Monitoring Pods with `kubectl`**
+### **Tainting and Removing Taints from Nodes**
 
-It looks like you tried to use `kubectl watch pod`, but `watch` is not a valid command in `kubectl`. If you want to continuously monitor the status of pods, you can use the following alternatives:
+**Tainting a Node**
 
-#### 1. Use `kubectl get` with `--watch`:
+**Command:**
 ```bash
-kubectl get pods --watch
+kubectl taint nodes <node-name> <key>=<value>:<effect>
 ```
-This command will display the status of all pods in the current namespace and update the output in real-time.
 
-#### 2. Use `kubectl get` with a specific pod name:
-If you want to watch a specific pod:
+**Example:**
 ```bash
-kubectl get pod <pod-name> --watch
+kubectl taint nodes node1 key1=value1:NoSchedule
 ```
-Replace `<pod-name>` with the name of the specific pod you're interested in.
 
-#### 3. Use `kubectl describe` with `--watch` (for more detailed info):
+**Explanation:**
+- `<node-name>`: The name of the node you want to taint.
+- `<key>=<value>`: The key-value pair for the taint.
+- `<effect>`: The effect of the taint, such as `NoSchedule`, `PreferNoSchedule`, or `NoExecute`.
+
+**Removing a Taint from a Node**
+
+**Command:**
 ```bash
-kubectl describe pod <pod-name> --watch
+kubectl taint nodes <node-name> <key>=<value>:<effect>-
 ```
-This will give you detailed information about a specific pod and update in real-time.
 
+**Example:**
+```bash
+kubectl taint nodes node1 key1=value1:NoSchedule-
+```
 
+**Explanation:**
+- `<node-name>`: The name of the node from which you want to remove the taint.
+- `<key>=<value>:<effect>-`: The key-value pair and effect of the taint to be removed, with `-` at the end indicating removal.
+
+**Effects:**
+- After running this command, the taint with the specified key-value pair and effect will be removed from the node. This allows pods that were previously restricted by this taint to be scheduled onto the node.
+
+---
+
+Feel free to adjust or expand upon this documentation based on your needs!
