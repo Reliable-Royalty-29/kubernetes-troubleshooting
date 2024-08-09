@@ -58,9 +58,6 @@ No new Pods will be scheduled on the tainted node unless they have a matching to
 ## PreferNoSchedule
 PreferNoSchedule is a "preference" or "soft" version of NoSchedule. The control plane will try to avoid placing a Pod that does not tolerate the taint on the node, but it is not guaranteed.
 
-```
-kubectl taint nodes node1 disktype=ssd:NoSchedule
-```
 
 ```
 spec:
