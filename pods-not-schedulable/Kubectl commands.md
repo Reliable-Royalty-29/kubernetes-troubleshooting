@@ -1,5 +1,3 @@
-Certainly! Here’s the updated documentation including the command for tainting and removing taints from nodes:
-
 ---
 
 ### **Kubectl Commands**
@@ -130,5 +128,3 @@ kubectl taint nodes node1 key1=value1:NoSchedule-
 - After running this command, the taint with the specified key-value pair and effect will be removed from the node. This allows pods that were previously restricted by this taint to be scheduled onto the node.
 
 ---
-
-Feel free to adjust or expand upon this documentation based on your needs!
